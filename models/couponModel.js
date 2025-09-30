@@ -14,6 +14,13 @@ const couponSchema = new mongoose.Schema({
     min: 1,
     max: 99,
   },
+  // This is the new, important field.
+  // It holds an array of product IDs (or SKUs) the coupon is valid for.
+  // If the array is empty, the coupon applies to the whole cart.
+  validForProducts: {
+    type: [String],
+    default: [], // Defaults to an empty array, making it a cart-wide coupon by default.
+  },
   isActive: {
     type: Boolean,
     default: true,
